@@ -1,0 +1,65 @@
+package com.simotion.talk.UI;
+
+import com.simotion.talk.Peer;
+import com.simotion.talk.PeerListManager;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Ellipse;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.prefs.Preferences;
+import com.simotion.talk.Main;
+import javafx.util.Callback;
+
+public class MainWindowController {
+    @FXML private Ellipse profileImg;
+    @FXML private Label profileName;
+    @FXML private Label profileEmail;
+    @FXML private Label onlineCountText;
+    @FXML private ListView peerListView;
+    @FXML private FlowPane mainPane;
+    @FXML
+    protected void initialize() {
+        // https://stackoverflow.com/questions/29847703/nullpointer-exception-during-initialize-fxml-injection-not-working-as-expected
+        // https://stackoverflow.com/questions/42116313/how-to-set-an-image-in-a-circle
+
+        String url = getClass().getResource("/default_profile.png").toExternalForm();
+        profileImg.setFill(new ImagePattern(new Image(url, false)));
+
+        Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
+        profileName.setText(prefs.get(Main.PROFILE_NAME, "DefaultName"));
+        profileEmail.setText(prefs.get(Main.PROFILE_EMAIL, "DefaultEmail"));
+
+        //https://stackoverflow.com/questions/6174299/javafx-2-0-set-component-to-full-width-and-height-of-immediate-parent
+        peerListView.prefWidthProperty().bind(mainPane.widthProperty());
+        peerListView.prefHeightProperty().bind(mainPane.heightProperty());
+
+        peerListView.setItems(PeerListManager.peers);
+        peerListView.setCellFactory(new Callback<ListView<Peer>, ListCell<Peer>>()
+        {
+            @Override
+            public ListCell<Peer> call(ListView<Peer> listView)
+            {
+                return new PeerListViewCell();
+            }
+        });
+
+        TimerTask updateTask = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    onlineCountText.setText("온라인 사용자: "+PeerListManager.peers.size());
+                });
+            }
+        };
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(updateTask, 0, 1000);
+    }
+}

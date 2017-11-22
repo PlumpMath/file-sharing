@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartController">
+    <Label alignment="CENTER" maxWidth="Infinity" text="처음 시작하기" textAlignment="CENTER">
+      <FlowPane.margin>
+         <Insets bottom="20.0" />
+      </FlowPane.margin>
+      <font>
+         <Font name="NanumGothic" size="36.0" />
+      </font>
+    </Label>
+    <Label alignment="CENTER"
+           contentDisplay="TOP"
+           maxWidth="Infinity"
+           text="환영합니다. [다음]을 눌러 프로필 설정을 시작하세요."
+           textAlignment="CENTER">
+        <FlowPane.margin>
+            <Insets bottom="15" />
+        </FlowPane.margin>
+        <font>
+            <Font name="NanumGothic" size="14.0" />
+        </font>
+    </Label>
+    <Button fx:id="firstNext"
+            text="다음"
+            alignment="CENTER"
+            textAlignment="CENTER"
+            maxWidth="Infinity"
+            onMouseClicked="#firstStartNextClicked">
+        <font>
+            <Font name="NanumGothic" />
+        </font>
+    </Button>
+</FlowPane>

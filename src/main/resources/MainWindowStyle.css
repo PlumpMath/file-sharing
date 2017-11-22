@@ -1,0 +1,33 @@
+<!--
+@font-face {
+    font-family: 'Nanum Gothic';
+    src: url('/NanumGothic.ttf');
+}
+-->
+
+.text {
+    -fx-font-family: "Roboto";
+}
+
+#profileBar {
+    -fx-background-color: #BBB;
+}
+#profileImg {
+    -fx-border-radius: 100 100 100 100;
+}
+#infoBar {
+    /*-fx-background-color: #4593e5;*/
+    -fx-background-color: #7998b8;
+}
+.label {
+    -fx-font-size: 16px;
+    -fx-font-family: "NanumBarunGothic";
+}
+#onlineCountText {
+}
+#profileName {
+    -fx-font-size: 24px;
+}
+#profileEmail {
+    -fx-font-size: 14px;
+}

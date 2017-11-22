@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartController">
+    <Label alignment="CENTER" maxWidth="Infinity" text="프로필 설정" textAlignment="CENTER">
+        <FlowPane.margin>
+            <Insets bottom="20" />
+        </FlowPane.margin>
+        <font>
+            <Font name="NanumGothic" size="36.0" />
+        </font>
+    </Label>
+    <Label alignment="CENTER" contentDisplay="TOP" maxWidth="Infinity" text="설정한 프로필은 같은 네트위크의 모든 사람들에게 보여집니다." textAlignment="CENTER">
+        <FlowPane.margin>
+            <Insets bottom="3" />
+        </FlowPane.margin>
+        <font>
+            <Font name="NanumGothic" size="14.0" />
+        </font>
+    </Label>
+    <Label alignment="CENTER" contentDisplay="TOP" maxWidth="Infinity" text="이 프로필로 당신을 다른 사람들이 알아보게 됩니다." textAlignment="CENTER">
+        <FlowPane.margin>
+            <Insets bottom="15" />
+        </FlowPane.margin>
+        <font>
+            <Font name="NanumGothic" size="14.0" />
+        </font>
+    </Label>
+    <FlowPane alignment="CENTER" maxWidth="Infinity" orientation="HORIZONTAL">
+        <FlowPane.margin>
+            <Insets bottom="5" left="10" right="10" />
+        </FlowPane.margin>
+        <Label alignment="CENTER_RIGHT" prefWidth="50" text="이름" textAlignment="RIGHT">
+            <FlowPane.margin>
+                <Insets right="10" />
+            </FlowPane.margin>
+            <font>
+                <Font name="NanumGothic" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameInput" prefWidth="300" />
+    </FlowPane>
+    <FlowPane alignment="CENTER" maxWidth="Infinity" orientation="HORIZONTAL">
+        <FlowPane.margin>
+            <Insets left="10" right="10" />
+        </FlowPane.margin>
+        <Label alignment="CENTER_RIGHT" prefWidth="50" text="이메일" textAlignment="RIGHT">
+            <FlowPane.margin>
+                <Insets right="10" />
+            </FlowPane.margin>
+            <font>
+                <Font name="NanumGothic" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="emailInput" prefWidth="300" />
+    </FlowPane>
+    <Button fx:id="firstNext" alignment="CENTER" maxWidth="Infinity" onMouseClicked="#profileCompleteClicked" text="완료" textAlignment="CENTER">
+        <FlowPane.margin>
+            <Insets bottom="50.0" left="40.0" right="40.0" top="20.0" />
+        </FlowPane.margin>
+        <font>
+            <Font name="NanumGothic" />
+        </font>
+    </Button>
+</FlowPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ListView?>
+<FlowPane fx:id="mainPane" id="mainPane" alignment="TOP_CENTER" maxWidth="480" minHeight="140" minWidth="480" prefHeight="650.0" prefWidth="480.0" stylesheets="@MainWindowStyle.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.MainWindowController">
+    <FlowPane id="profileBar" alignment="CENTER_LEFT" minHeight="80" orientation="HORIZONTAL" prefHeight="80" prefWidth="480">
+        <FlowPane.margin>
+            <Insets left="0" right="0" />
+        </FlowPane.margin>
+        <Ellipse id="profileImg" fx:id="profileImg" radiusX="35" radiusY="35">
+            <FlowPane.margin>
+                <Insets bottom="5" left="10" right="5" top="5" />
+            </FlowPane.margin>
+        </Ellipse>
+        <FlowPane alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="80">
+            <FlowPane.margin>
+                <Insets left="5" />
+            </FlowPane.margin>
+            <Label text="{name}" id="profileName" fx:id="profileName">
+                <FlowPane.margin>
+                    <Insets bottom="6" />
+                </FlowPane.margin>
+            </Label>
+            <Label text="test@test.com" id="profileEmail" fx:id="profileEmail">
+            </Label>
+        </FlowPane>
+    </FlowPane>
+    <FlowPane id="infoBar" alignment="CENTER_LEFT" minHeight="40" orientation="HORIZONTAL" prefHeight="40" prefWidth="480">
+        <Label text="현재 온라인: 0명" id="onlineCountText" fx:id="onlineCountText">
+            <FlowPane.margin>
+                <Insets left="10" />
+            </FlowPane.margin>
+        </Label>
+    </FlowPane>
+    <ListView id="peerListView" fx:id="peerListView">
+
+    </ListView>
+</FlowPane>
