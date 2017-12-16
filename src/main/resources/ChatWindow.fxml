@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <FlowPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.simotion.talk.UI.ChatWindowController"
@@ -13,10 +15,18 @@
 
     </ListView>
     <FlowPane orientation="HORIZONTAL" maxHeight="35" prefHeight="35"
-        id="modesFlowPane" fx:id="modesFlowPane">
+        id="modesFlowPane" fx:id="modesFlowPane" alignment="CENTER_LEFT">
         <padding>
             <Insets top="3" left="3" bottom="3" right="3" />
         </padding>
+        <ImageView fx:id="btn_clear" fitHeight="18" fitWidth="18" >
+            <FlowPane.margin>
+                <Insets left="5" />
+            </FlowPane.margin>
+            <image>
+                <Image url="@/img/ico_trash.png" />
+            </image>
+        </ImageView>
     </FlowPane>
     <TextArea fx:id="chatMessage" id="chatMessage" minWidth="400" maxWidth="400" prefHeight="100" wrapText="true">
     </TextArea>

@@ -36,7 +36,6 @@ public class MulticastEmitter implements Runnable {
             jmdns = JmDNS.create(addr, hostname);
 
             ServiceInfo serviceInfo = ServiceInfo.create(TYPE_STRING, "example", 1234, "");
-            System.out.println("Start response to _transfer._http._tcp.local.");
             while(true) {
                 jmdns.registerService(serviceInfo);
                 Thread.sleep(5000);

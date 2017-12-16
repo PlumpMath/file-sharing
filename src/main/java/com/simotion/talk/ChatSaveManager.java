@@ -92,9 +92,9 @@ public class ChatSaveManager {
     public static void clear(String uuid) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
+            conn.setAutoCommit(false);
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("DROP TABLE "+uuid+";");
-
+            stmt.executeUpdate("DROP TABLE `"+uuid+"`;");
             stmt.close();
             conn.commit();
             conn.close();

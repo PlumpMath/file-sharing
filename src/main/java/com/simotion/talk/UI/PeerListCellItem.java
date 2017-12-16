@@ -36,7 +36,6 @@ public class PeerListCellItem {
             btn_chat.setPickOnBounds(true);
             btn_filebox.setPickOnBounds(true);
             btn_info.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                System.out.println("Info clicked");
                 new PeerInformationWindow().showWindow(myPeer);
             });
             btn_chat.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

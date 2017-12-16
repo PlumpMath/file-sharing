@@ -50,7 +50,7 @@ public class MulticastReceiver implements Runnable {
                 Thread.sleep(1);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     private static String[] ClientRun(String ip, String data) {

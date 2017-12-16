@@ -37,8 +37,6 @@ public class HandshakeServer implements Runnable {
 
                 String data = null;
                 data = br.readLine();
-                System.out.println(data);
-                System.out.println(DataParser.decrypt(data));
 
                 respondData(data, socket);
             }

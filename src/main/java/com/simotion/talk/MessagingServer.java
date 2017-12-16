@@ -41,7 +41,6 @@ public class MessagingServer implements Runnable {
 
                 // 메세지 종류를 찾아서, 종류에 맞게 핸들링
                 int messageType = in.readInt();
-                System.out.println("[["+messageType+"]]");
                 switch(MessageType.getType(messageType)) {
                     case 0:
                         manageNormalMessage(socket, in);
@@ -119,10 +118,8 @@ public class MessagingServer implements Runnable {
 
     }
     private void manageFileRecv(DataInputStream d) {
-        System.out.println("Receiving file");
         try {
             String fileName = d.readUTF();
-            System.out.println("File name: "+fileName);
 
             String name = fileName.substring(0,fileName.lastIndexOf('.'));
             String ext = fileName.substring(fileName.lastIndexOf('.'));

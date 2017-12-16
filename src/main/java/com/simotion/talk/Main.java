@@ -26,16 +26,12 @@ public class Main extends Application {
             prefs.put(UUID_KEY, idOne.toString());
         }
 
-        System.out.println(prefs.get(PROFILE_NAME, "0"));
-
         if(prefs.get(FIRST_START_TITLE, "0").equals("0")) {
             new FirstStart().CreateWindow();
         } else {
             new MainWindow().start();
         }
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }
