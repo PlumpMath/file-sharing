@@ -14,6 +14,7 @@ public class Main extends Application {
     public static final String PROFILE_EMAIL     = "PROFILE_EMAIL";
     public static final String APP_NAME          = "File Transfer";
     public static final String UUID_KEY          = "MachineUUID";
+    public static final String ALLOW_FILES       = "ALLOW_FILES";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,7 +33,6 @@ public class Main extends Application {
         } else {
             new MainWindow().start();
         }
-        System.out.println("Hi");
     }
 
 

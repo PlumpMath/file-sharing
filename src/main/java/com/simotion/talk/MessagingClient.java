@@ -1,52 +1,75 @@
 package com.simotion.talk;
 
-import sun.plugin2.message.Message;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 
 public class MessagingClient {
-    public static boolean sendMessage(Peer peer, String message) {
-        Socket socket;
-        OutputStream os = null;
-        OutputStreamWriter osw = null;
-        BufferedWriter bw = null;
+    public static void sendMessage(Peer peer, String message) {
+        sendString(peer, message, MessageType.NORMAL_MESSAGE, false).equals("1");
+    }
+    public static String getStatusQuery(Peer peer, String query) {
+        return sendString(peer, query, MessageType.INFO_QUERY, true);
+    }
+    public static void sendFile(Peer peer, File file) {
+        try {
+            Socket socket = new Socket(peer.ipAddress, MessagingServer.CHAT_PORT);
+            long length = file.length();
+            if(length > Integer.MAX_VALUE) {
+                System.err.println("File is too large.");
+            }
+            BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
 
+            try (DataOutputStream d = new DataOutputStream(out)) {
+                d.writeInt(MessageType.FILE_SEND.getMagicByte());
+                d.writeUTF(file.getName());
+                Files.copy(file.toPath(), d);
+                d.flush();
+            }
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static String sendString(Peer peer, String message, MessageType type, boolean recvData) {
+        Socket socket;
+        BufferedOutputStream os = null;
+        DataOutputStream dos = null;
         InputStream is = null;
-        InputStreamReader isr = null;
-        BufferedReader br = null;
+        DataInputStream dis = null;
 
         try {
             socket = new Socket(peer.ipAddress, MessagingServer.CHAT_PORT);
-            os = socket.getOutputStream();
-            osw = new OutputStreamWriter(os);
-            bw = new BufferedWriter(osw);
+            os = new BufferedOutputStream(socket.getOutputStream());
+
+            dos = new DataOutputStream(os);
+            dos.writeInt(type.getMagicByte());
+            dos.writeUTF(DataParser.encrypt(message));
+            dos.flush();
 
             is = socket.getInputStream();
-            isr = new InputStreamReader(is);
-            br = new BufferedReader(isr);
+            dis = new DataInputStream(is);
 
-            bw.write(DataParser.encrypt(message));
-            bw.newLine();
-            bw.flush();
+            if(recvData) {
+                String receiveData;
+                receiveData = dis.readUTF();
+                return DataParser.decrypt(receiveData);
+            }
+            return "1";
 
-            // receiveData = br.readLine();        // 서버로부터 데이터 한줄 읽음
-            // receiveData = DataParser.decrypt(receiveData);
-            // return receiveData.equals("ok");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if(bw!=null) bw.close();
-                if(osw!=null) osw.close();
                 if(os!=null) os.close();
-                if(br!=null) br.close();
-                if(isr!=null) isr.close();
+                if(dos!=null) dos.close();
                 if(is!=null) is.close();
+                if(dis!=null) dis.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return true;
+        return "1";
     }
 }

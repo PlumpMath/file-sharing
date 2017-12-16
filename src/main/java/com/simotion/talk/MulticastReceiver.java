@@ -1,12 +1,8 @@
 package com.simotion.talk;
 
-import com.sun.org.apache.xpath.internal.operations.Mult;
-
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.prefs.Preferences;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
@@ -14,15 +10,9 @@ import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 
 public class MulticastReceiver implements Runnable {
-    public JmDNS jmdns;
-    public static final String TYPE_STRING = "_transfer._http._tcp.local.";
+    private JmDNS jmdns;
+    private static final String TYPE_STRING = "_transfer._http._tcp.local.";
 
-    public String machineUUID;
-
-    public MulticastReceiver() {
-        Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
-        machineUUID = prefs.get(Main.UUID_KEY, "-1");
-    }
 
     public void run() {
         try {
@@ -56,13 +46,15 @@ public class MulticastReceiver implements Runnable {
                     System.out.println("Service resolved: " + event.getInfo());
                 }
             });
-            while(true) {}
+            while(true) {
+                Thread.sleep(1);
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    public static String[] ClientRun(String ip, String data) {
-        Socket socket = null;
+    private static String[] ClientRun(String ip, String data) {
+        Socket socket;
         OutputStream os = null;
         OutputStreamWriter osw = null;
         BufferedWriter bw = null;
@@ -79,26 +71,25 @@ public class MulticastReceiver implements Runnable {
 
             is = socket.getInputStream();
             isr = new InputStreamReader(is);
-            br = new BufferedReader(isr);        // 서버로부터 Data를 받음
+            br = new BufferedReader(isr);
 
             bw.write(DataParser.encrypt(data));
             bw.newLine();
             bw.flush();
 
-            String receiveData = "";
-            receiveData = br.readLine();        // 서버로부터 데이터 한줄 읽음
+            String receiveData = br.readLine();
             receiveData = DataParser.decrypt(receiveData);
             return receiveData.split(" ");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                bw.close();
-                osw.close();
-                os.close();
-                br.close();
-                isr.close();
-                is.close();
+                if(bw!=null) bw.close();
+                if(osw!=null) osw.close();
+                if(os!=null) os.close();
+                if(br!=null) br.close();
+                if(isr!=null) isr.close();
+                if(is!=null) is.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
