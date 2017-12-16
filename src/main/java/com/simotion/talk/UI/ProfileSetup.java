@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class ProfileSetup extends Stage {
     public ProfileSetup() throws Exception {
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../../../../../../../res/ProfileSetup.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ProfileSetup.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("AppTitle");

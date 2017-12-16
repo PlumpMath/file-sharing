@@ -14,7 +14,6 @@ public class FirstStart extends Stage {
         myStage = new Stage();
     }
     public void CreateWindow() throws Exception {
-        // https://stackoverflow.com/questions/13003323/javafx-how-to-change-stage
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         URL location = getClass().getClassLoader().getResource("FirstStart.fxml");
@@ -30,3 +29,6 @@ public class FirstStart extends Stage {
         myStage.show();
     }
 }
+
+// 참고 출처
+// https://stackoverflow.com/questions/13003323/javafx-how-to-change-stage

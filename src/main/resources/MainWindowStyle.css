@@ -16,8 +16,10 @@
     -fx-border-radius: 100 100 100 100;
 }
 #infoBar {
-    /*-fx-background-color: #4593e5;*/
     -fx-background-color: #7998b8;
+}
+.table-row-cell {
+    -fx-cell-size: 50px;
 }
 .label {
     -fx-font-size: 16px;
@@ -30,4 +32,7 @@
 }
 #profileEmail {
     -fx-font-size: 14px;
+}
+ImageView {
+    -fx-background-color: #FFF;
 }

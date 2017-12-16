@@ -19,12 +19,12 @@ public class HandshakeServer implements Runnable {
 
     @Override
     public void run() {
-        ServerSocket server = null;
-        Socket socket = null;
+        ServerSocket server;
+        Socket socket;
+        InputStream is;
+        InputStreamReader isr;
+        BufferedReader br;
 
-        InputStream is = null;
-        InputStreamReader isr = null;
-        BufferedReader br = null;
         try {
             server = new ServerSocket(HANDSHAKE_PORT);
             while (true) {
@@ -84,4 +84,5 @@ public class HandshakeServer implements Runnable {
 }
 
 
-//출처: http://hunit.tistory.com/256 [HunIT Blog]
+// 참고 출처
+// http://hunit.tistory.com/256

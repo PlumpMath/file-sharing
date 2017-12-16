@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.FlowPane?>
+<FlowPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.simotion.talk.UI.ChatWindowController"
+          minHeight="500" maxHeight="500" minWidth="400" maxWidth="400"
+          stylesheets="ChatWindowStyle.css">
+    <ListView fx:id="chatListView" id="chatListView" minWidth="400" maxWidth="400" prefHeight="365">
+
+    </ListView>
+    <FlowPane orientation="HORIZONTAL" maxHeight="35" prefHeight="35"
+        id="modesFlowPane" fx:id="modesFlowPane">
+        <padding>
+            <Insets top="3" left="3" bottom="3" right="3" />
+        </padding>
+    </FlowPane>
+    <TextArea fx:id="chatMessage" id="chatMessage" minWidth="400" maxWidth="400" prefHeight="100" wrapText="true">
+    </TextArea>
+</FlowPane>

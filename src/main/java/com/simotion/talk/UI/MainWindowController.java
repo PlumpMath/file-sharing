@@ -27,29 +27,18 @@ public class MainWindowController {
     @FXML private FlowPane mainPane;
     @FXML
     protected void initialize() {
-        // https://stackoverflow.com/questions/29847703/nullpointer-exception-during-initialize-fxml-injection-not-working-as-expected
-        // https://stackoverflow.com/questions/42116313/how-to-set-an-image-in-a-circle
-
-        String url = getClass().getResource("/default_profile.png").toExternalForm();
+        String url = getClass().getResource("/img/default_profile.png").toExternalForm();
         profileImg.setFill(new ImagePattern(new Image(url, false)));
 
         Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
         profileName.setText(prefs.get(Main.PROFILE_NAME, "DefaultName"));
         profileEmail.setText(prefs.get(Main.PROFILE_EMAIL, "DefaultEmail"));
 
-        //https://stackoverflow.com/questions/6174299/javafx-2-0-set-component-to-full-width-and-height-of-immediate-parent
         peerListView.prefWidthProperty().bind(mainPane.widthProperty());
         peerListView.prefHeightProperty().bind(mainPane.heightProperty());
 
         peerListView.setItems(PeerListManager.peers);
-        peerListView.setCellFactory(new Callback<ListView<Peer>, ListCell<Peer>>()
-        {
-            @Override
-            public ListCell<Peer> call(ListView<Peer> listView)
-            {
-                return new PeerListViewCell();
-            }
-        });
+        peerListView.setCellFactory((Callback<ListView<Peer>, ListCell<Peer>>) listView -> new PeerListViewCell());
 
         TimerTask updateTask = new TimerTask() {
             @Override
@@ -63,3 +52,8 @@ public class MainWindowController {
         timer.scheduleAtFixedRate(updateTask, 0, 1000);
     }
 }
+
+// 참고 출처
+// https://stackoverflow.com/questions/29847703/nullpointer-exception-during-initialize-fxml-injection-not-working-as-expected
+// https://stackoverflow.com/questions/42116313/how-to-set-an-image-in-a-circle
+// https://stackoverflow.com/questions/6174299/javafx-2-0-set-component-to-full-width-and-height-of-immediate-parent

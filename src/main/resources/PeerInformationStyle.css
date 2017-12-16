@@ -1,0 +1,12 @@
+@font-face {
+    font-family: NG;
+    src: url('NanumGothic.ttf');
+}
+.label {
+    -fx-font-size: 16px;
+    -fx-font-family: 'NG';
+}
+#heading {
+    -fx-font-size: 24px;
+    -fx-font-family: 'NG';
+}

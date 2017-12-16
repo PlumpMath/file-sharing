@@ -5,6 +5,10 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.prefs.Preferences;
 
 import javax.jmdns.JmDNS;
@@ -31,10 +35,13 @@ public class MulticastEmitter implements Runnable {
             String hostname = InetAddress.getByName(addr.getHostName()).toString();
             jmdns = JmDNS.create(addr, hostname);
 
-            ServiceInfo serviceInfo = ServiceInfo.create(TYPE_STRING, "example", 1234, "path=index.html");
-            jmdns.registerService(serviceInfo);
+            ServiceInfo serviceInfo = ServiceInfo.create(TYPE_STRING, "example", 1234, "");
             System.out.println("Start response to _transfer._http._tcp.local.");
-            while(true) {}
+            while(true) {
+                jmdns.registerService(serviceInfo);
+                Thread.sleep(5000);
+                jmdns.unregisterService(serviceInfo);
+            }
         }
         catch(Exception e) {
 

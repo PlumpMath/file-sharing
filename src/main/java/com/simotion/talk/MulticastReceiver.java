@@ -62,7 +62,6 @@ public class MulticastReceiver implements Runnable {
         }
     }
     public static String[] ClientRun(String ip, String data) {
-
         Socket socket = null;
         OutputStream os = null;
         OutputStreamWriter osw = null;

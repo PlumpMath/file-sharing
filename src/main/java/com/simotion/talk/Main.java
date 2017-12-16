@@ -17,7 +17,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // https://stackoverflow.com/questions/4017137/how-do-i-save-preference-user-settings-in-java
         Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
 
         // Set a machine UUID.
@@ -25,9 +24,6 @@ public class Main extends Application {
             UUID idOne = UUID.randomUUID();
             prefs.put(UUID_KEY, idOne.toString());
         }
-
-        // DEBUG
-        // prefs.put(Main.FIRST_START_TITLE, "0");
 
         System.out.println(prefs.get(PROFILE_NAME, "0"));
 
@@ -44,3 +40,7 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+// 참고 출처
+// https://stackoverflow.com/questions/4017137/how-do-i-save-preference-user-settings-in-java
+// https://stackoverflow.com/questions/2982748/create-a-guid-in-java

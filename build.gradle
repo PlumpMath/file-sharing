@@ -15,7 +15,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/javax.jmdns/jmdns
     compile group: 'javax.jmdns', name: 'jmdns', version: '3.4.1'
-
+    compile 'org.xerial:sqlite-jdbc:3.21.0'
 }
 jar {
     manifest {

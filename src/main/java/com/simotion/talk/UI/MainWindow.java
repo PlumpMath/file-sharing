@@ -2,18 +2,21 @@ package com.simotion.talk.UI;
 
 import com.simotion.talk.Main;
 import com.simotion.talk.NetworkManager;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainWindow extends Stage {
     @FXML private FlowPane profileBar;
+    private Stage primaryStage;
     public void start() throws Exception {
-        Stage primaryStage = new Stage();
-        System.out.println(getClass().getResource("/MainWindow.fxml"));
+        primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
         Scene scene = new Scene(root);
 
@@ -25,5 +28,9 @@ public class MainWindow extends Stage {
         primaryStage.show();
 
         NetworkManager.enableMulticast();
+        primaryStage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 }

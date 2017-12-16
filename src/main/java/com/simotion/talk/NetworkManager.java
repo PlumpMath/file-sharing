@@ -1,13 +1,8 @@
 package com.simotion.talk;
 
 public class NetworkManager {
-    public static boolean isMulticastOn() {
-        return multicastOn;
-    }
-    private static boolean multicastOn;
 
     public static void enableMulticast() {
-        if(multicastOn) return;
         MulticastEmitter me = new MulticastEmitter();
         Thread t = new Thread(me);
         t.start();
@@ -15,6 +10,8 @@ public class NetworkManager {
         t2.start();
         Thread t3 = new Thread(new HandshakeServer());
         t3.start();
+        Thread t4 = new Thread(new MessagingServer());
+        t4.start();
     }
 
 }

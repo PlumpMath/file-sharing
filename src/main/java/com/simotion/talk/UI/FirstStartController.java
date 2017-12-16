@@ -16,21 +16,20 @@ import java.util.regex.Pattern;
 
 
 public class FirstStartController {
-    // https://stackoverflow.com/questions/8204680/java-regex-email
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(
+            "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE
+    );
 
     @FXML private TextField nameInput;
     @FXML private TextField emailInput;
-
     Stage myStage;
+
     public void setStage(Stage stage) {
         myStage = stage;
     }
 
-    // https://stackoverflow.com/questions/9722418/how-to-handle-listview-item-clicked-action
     @FXML public void firstStartNextClicked(MouseEvent e) throws Exception {
-        // https://stackoverflow.com/questions/13003323/javafx-how-to-change-stage
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FirstProfileSetup.fxml"));
         myStage.setScene(new Scene(root));
 
@@ -45,8 +44,6 @@ public class FirstStartController {
         email = email.trim();
 
         if(name.equals("") || email.equals("")) {
-            //http://code.makery.ch/blog/javafx-dialogs-official/
-
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("입력 오류");
             alert.setHeaderText(null);
@@ -55,6 +52,7 @@ public class FirstStartController {
             alert.showAndWait();
             return;
         }
+
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
 
         if(matcher.find() == false) {
@@ -76,3 +74,9 @@ public class FirstStartController {
 
     }
 }
+
+// 참고 출처
+// http://code.makery.ch/blog/javafx-dialogs-official/
+// https://stackoverflow.com/questions/8204680/java-regex-email
+// https://stackoverflow.com/questions/9722418/how-to-handle-listview-item-clicked-action
+// https://stackoverflow.com/questions/13003323/javafx-how-to-change-stage
