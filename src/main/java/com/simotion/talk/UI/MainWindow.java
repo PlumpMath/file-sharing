@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 // public class MainWindow
@@ -14,6 +15,7 @@ public class MainWindow extends Stage {
     private Stage primaryStage;
     public void start() throws Exception {
         primaryStage = new Stage();
+        primaryStage.getIcons().add(new Image(getClass().getResource("/logo.png").toExternalForm()));
         Parent root = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
         Scene scene = new Scene(root);
 
@@ -31,3 +33,6 @@ public class MainWindow extends Stage {
         });
     }
 }
+
+// 도와준 사람
+// 조하연: 로고를 만들어 줌
