@@ -16,19 +16,22 @@ public class Main extends Application {
     public static final String UUID_KEY          = "MachineUUID";
     public static final String ALLOW_FILES       = "ALLOW_FILES";
 
+    // 모든것을 시작한다
     @Override
     public void start(Stage primaryStage) throws Exception {
         Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
 
-        // Set a machine UUID.
+        // 장치 UUID가 없으면 생성한다.
         if(prefs.get(UUID_KEY, "-1").equals("-1")) {
             UUID idOne = UUID.randomUUID();
             prefs.put(UUID_KEY, idOne.toString());
         }
 
+        // 프로그램을 처음 시작하는 것이면 프로필 설정 창을 띄운다.
         if(prefs.get(FIRST_START_TITLE, "0").equals("0")) {
             new FirstStartWindow().CreateWindow();
         } else {
+            // 그게 아니라면 메인 화면을 띄운다.
             new MainWindow().start();
         }
     }

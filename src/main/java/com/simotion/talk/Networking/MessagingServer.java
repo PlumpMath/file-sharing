@@ -110,7 +110,7 @@ class MessagingServerThread extends Thread {
             for(int i = 0; i< PeerListManager.peers.size(); i++) {
                 if(PeerListManager.peers.get(i).ipAddress.equals(socket.getInetAddress().toString().substring(1))) {
                     senderFound = true;
-                    PeerListManager.receiveChatMsg(PeerListManager.peers.get(i), message);
+                    PeerListManager.addMsg(PeerListManager.peers.get(i), message);
                 }
             }
             if(!senderFound) {
@@ -134,7 +134,7 @@ class MessagingServerThread extends Thread {
             for(int i = 0; i< PeerListManager.peers.size(); i++) {
                 if(PeerListManager.peers.get(i).ipAddress.equals(socket.getInetAddress().toString().substring(1))) {
                     senderFound = true;
-                    PeerListManager.receiveChatMsg(PeerListManager.peers.get(i), DataParser.decrypt(data));
+                    PeerListManager.addMsg(PeerListManager.peers.get(i), DataParser.decrypt(data));
                 }
             }
             if(!senderFound) {

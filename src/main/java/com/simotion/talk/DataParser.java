@@ -1,9 +1,10 @@
 package com.simotion.talk;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
+// public class DataParser
+// 주고받는 데이터의 Base64 디코딩, 인코딩
+// 원래 보안까지 추가하려 했으나...
 public class DataParser {
     public static String encrypt(String text) {
         Base64.Encoder encoder = Base64.getEncoder();
