@@ -1,31 +1,32 @@
 package com.simotion.talk.Networking;
 
 import com.simotion.talk.DataParser;
-import com.simotion.talk.Networking.HandshakeServer;
 import com.simotion.talk.Peer;
 import com.simotion.talk.PeerListManager;
 
-import java.io.*;
-import java.net.*;
-import java.util.Arrays;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Arrays;
 
+// public class MulticastReceiver
+// 네트워크 상의 피어를 탐색하고, 찾았을 때 피어 정보를 가져온다.
 public class MulticastReceiver implements Runnable {
     private JmDNS jmdns;
     private static final String TYPE_STRING = "_transfer._http._tcp.local.";
-
 
     public void run() {
         try {
             InetAddress addr = InetAddress.getLocalHost();
             String hostname = InetAddress.getByName(addr.getHostName()).toString();
-            // Create a JmDNS instance
+            // JmDNS 객체 생성
             jmdns = JmDNS.create(addr, hostname);
 
-            // Add a service listener
+            // 네트위크 상의 서비스를 탐색
             jmdns.addServiceListener(TYPE_STRING, new ServiceListener() {
                 public void serviceAdded(ServiceEvent event) {
                     System.out.println("Service added: " + event.getName() +
@@ -57,6 +58,10 @@ public class MulticastReceiver implements Runnable {
             e.printStackTrace();
         }
     }
+
+    // private static String[] ClientRun(String ip, String data)
+    // 피어를 찾았을 때, 기본적인 피어 정보를 요청한다.
+    // 상대의 HandshakeServer에서 답장한다.
     private static String[] ClientRun(String ip, String data) {
         Socket socket;
         OutputStream os = null;
@@ -71,7 +76,7 @@ public class MulticastReceiver implements Runnable {
             socket = new Socket(ip, HandshakeServer.HANDSHAKE_PORT);
             os = socket.getOutputStream();
             osw = new OutputStreamWriter(os);
-            bw = new BufferedWriter(osw);            //서버로 전송을 위한 OutputStream
+            bw = new BufferedWriter(osw);
 
             is = socket.getInputStream();
             isr = new InputStreamReader(is);
