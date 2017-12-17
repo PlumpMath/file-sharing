@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// public class ChatWindow
+// 채팅창을 띄우는 클래스
 public class ChatWindow {
     private Stage primaryStage;
     public ChatWindow() {
@@ -18,6 +20,7 @@ public class ChatWindow {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChatWindow.fxml"));
             Parent root = fxmlLoader.load();
 
+            // Controller에 피어 정보를 전달
             ChatWindowController cont = fxmlLoader.getController();
             cont.setPeer(peer);
 

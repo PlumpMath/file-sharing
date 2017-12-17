@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartController">
+<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartWindowController">
     <Label alignment="CENTER" maxWidth="Infinity" text="프로필 설정" textAlignment="CENTER">
         <FlowPane.margin>
             <Insets bottom="20" />

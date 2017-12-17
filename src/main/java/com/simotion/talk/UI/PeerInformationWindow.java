@@ -1,13 +1,14 @@
 package com.simotion.talk.UI;
 
 import com.simotion.talk.Main;
-import com.simotion.talk.NetworkManager;
 import com.simotion.talk.Peer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// class PeerInformationWindow
+// 피어 정보 창
 class PeerInformationWindow extends Stage {
     private Stage primaryStage;
     PeerInformationWindow() {

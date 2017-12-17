@@ -27,7 +27,7 @@ public class Main extends Application {
         }
 
         if(prefs.get(FIRST_START_TITLE, "0").equals("0")) {
-            new FirstStart().CreateWindow();
+            new FirstStartWindow().CreateWindow();
         } else {
             new MainWindow().start();
         }

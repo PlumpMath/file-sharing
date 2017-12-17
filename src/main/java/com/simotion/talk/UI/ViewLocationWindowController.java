@@ -5,24 +5,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
+// public class ViewLocationWindowController
+// ViewLocationWindow의 Controller
 public class ViewLocationWindowController {
     @FXML private ImageView mapImageView;
     @FXML private Circle pinCircle;
 
-    private int floor;
-    private double ratioX, ratioY;
+    // 주어진 데이터로 위치를 설정
     void setLocation(int map, double ratioX, double ratioY) {
-        this.floor = map;
-        this.ratioX = ratioX;
-        this.ratioY = ratioY;
-
-        String location = getClass().getResource("/map/"+floor+"f.png").toExternalForm();
+        String location = getClass().getResource("/map/"+map+"f.png").toExternalForm();
         mapImageView.setImage(new Image(location));
 
         pinCircle.setCenterX(ratioX*mapImageView.getFitWidth());
         pinCircle.setCenterY(ratioY*mapImageView.getFitHeight());
-    }
-    @FXML
-    public void initialize() {
     }
 }

@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// public class MainWindow
+// 메인 화면의 창
 public class MainWindow extends Stage {
     private Stage primaryStage;
     public void start() throws Exception {

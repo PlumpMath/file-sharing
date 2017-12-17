@@ -3,6 +3,8 @@ package com.simotion.talk.UI;
 import com.simotion.talk.Peer;
 import javafx.scene.control.ListCell;
 
+// public class PeerListViewCell
+// 피어 목록의 Custom ListCell
 public class PeerListViewCell extends ListCell<Peer>
 {
     @Override

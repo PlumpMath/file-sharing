@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// class ViewLocationWindow
+// 위치정보를 보여주는 창
 class ViewLocationWindow {
     private Stage primaryStage;
     ViewLocationWindow() {

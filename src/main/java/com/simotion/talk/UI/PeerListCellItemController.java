@@ -11,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+// public class PeerListCellItemController
+// 피어 목록의 Custom ListCell 컨트롤러
 public class PeerListCellItemController {
     @FXML private HBox hBox;
     @FXML private Label label1;
@@ -36,18 +38,23 @@ public class PeerListCellItemController {
     protected void initialize() {
         try
         {
+            // 이미지의 투명 영역을 눌러도 클릭 되도록 설정
             btn_info.setPickOnBounds(true);
             btn_chat.setPickOnBounds(true);
             btn_filebox.setPickOnBounds(true);
             btn_location.setPickOnBounds(true);
+
+            // 피어 정보 버튼
             btn_info.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> new PeerInformationWindow().showWindow(myPeer));
+            // 채팅 정보 버튼
             btn_chat.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> PeerListManager.getChatWindowController(myPeer));
+            // 파일 전송 버튼
             btn_filebox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> FileSend.chooseAndSend((Stage)hBox.getScene().getWindow(), myPeer));
+            // 위치 전송 버튼
             btn_location.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> new SetLocationWindow().showWindow(myPeer));
         }
         catch (Exception e)
         {
-            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }

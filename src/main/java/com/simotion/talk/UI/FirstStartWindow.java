@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
-public class FirstStart extends Stage {
+// public class FirstStartWindow
+// 처음 시작 화면
+public class FirstStartWindow extends Stage {
     Stage myStage;
-    public FirstStart() {
+    public FirstStartWindow() {
         myStage = new Stage();
     }
     public void CreateWindow() throws Exception {
@@ -25,7 +27,7 @@ public class FirstStart extends Stage {
         myStage.setTitle("처음 시작하기");
         myStage.setScene(scene);
 
-        ((FirstStartController)fxmlLoader.getController()).setStage(myStage);
+        ((FirstStartWindowController)fxmlLoader.getController()).setStage(myStage);
         myStage.show();
     }
 }

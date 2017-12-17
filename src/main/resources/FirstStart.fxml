@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.Button?>
-<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartController">
+<FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="600" prefWidth="430" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simotion.talk.UI.FirstStartWindowController">
     <Label alignment="CENTER" maxWidth="Infinity" text="처음 시작하기" textAlignment="CENTER">
       <FlowPane.margin>
          <Insets bottom="20.0" />

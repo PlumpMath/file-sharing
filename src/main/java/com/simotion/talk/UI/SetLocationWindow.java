@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// class SetLocationWindow
+// 위치 전송 창: 위치를 선택하고 전송할 수 있음
 class SetLocationWindow {
     private Stage primaryStage;
     SetLocationWindow() {
