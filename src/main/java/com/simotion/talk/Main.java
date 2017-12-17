@@ -2,6 +2,7 @@ package com.simotion.talk;
 
 import com.simotion.talk.UI.*;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.UUID;
@@ -21,6 +22,12 @@ public class Main extends Application {
     // 모든것을 시작한다
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // 폰트를 로드
+        Font.loadFont(
+            getClass().getResource("/NanumGothic.ttf").toExternalForm(),
+            10
+        );
+
         Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
 
         // 장치 UUID가 없으면 생성한다.
@@ -29,8 +36,8 @@ public class Main extends Application {
             prefs.put(UUID_KEY, idOne.toString());
         }
 
-        // 프로그램을 처음 시작하는 것이면 프로필 설정 창을 띄운다.
         if(prefs.get(FIRST_START_TITLE, "0").equals("0")) {
+            // 프로그램을 처음 시작하는 것이면 프로필 설정 창을 띄운다.
             new FirstStartWindow().CreateWindow();
         } else {
             // 그게 아니라면 메인 화면을 띄운다.

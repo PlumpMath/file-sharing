@@ -7,3 +7,7 @@
 #chatMessage {
     -fx-background-insets: 0;
 }
+.label {
+    -fx-font-size: 16px;
+    -fx-font-family: "NanumBarunGothic";
+}

@@ -40,6 +40,12 @@
             </FlowPane.margin>
             <Image url="@/img/ico_downloads.png"/>
         </ImageView>
+        <ImageView fx:id="btn_dalbit" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_moon.png"/>
+        </ImageView>
     </FlowPane>
     <FlowPane id="infoBar" alignment="CENTER_LEFT" minHeight="40" prefHeight="40" prefWidth="480" >
         <Label text="현재 온라인: 0명" id="onlineCountText" fx:id="onlineCountText">

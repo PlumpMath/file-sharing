@@ -2,6 +2,7 @@ package com.simotion.talk.UI;
 
 import com.simotion.talk.Peer;
 import com.simotion.talk.PeerListManager;
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.shape.Ellipse;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Timer;
@@ -35,6 +37,7 @@ public class MainWindowController {
     @FXML private FlowPane mainPane;
     @FXML private ImageView btn_filebox;
     @FXML private ImageView btn_filemode;
+    @FXML private ImageView btn_dalbit;
     private Preferences prefs;
 
     @FXML
@@ -74,6 +77,7 @@ public class MainWindowController {
         // 이미지의 투명 영역을 눌러도 클릭 되도록 설정
         btn_filebox.setPickOnBounds(true);
         btn_filemode.setPickOnBounds(true);
+        btn_dalbit.setPickOnBounds(true);
 
         // 파일 다운로드 폴더 보기 버튼
         btn_filebox.setOnMouseClicked(e -> {
@@ -92,6 +96,12 @@ public class MainWindowController {
             boolean value = prefs.getBoolean(Main.ALLOW_FILES, false);
             prefs.putBoolean(Main.ALLOW_FILES, !value);
             setFileMode(!value);
+        });
+        btn_dalbit.setOnMouseClicked(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://go.sasa.hs.kr/"));
+            }
+            catch(Exception ignored) { }
         });
     }
     // 파일 수신모드 변경

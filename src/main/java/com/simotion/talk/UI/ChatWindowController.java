@@ -35,6 +35,9 @@ public class ChatWindowController {
     @FXML private ImageView btn_location;
     @FXML private ImageView btn_emote;
     private Peer myPeer;
+
+    // public void appendChatText(String text, boolean isOutgoing)
+    // 주어진 메세지를 창에 띄운다.
     public void appendChatText(String text, boolean isOutgoing) {
         Platform.runLater(() -> {
             if(chatListView == null) {
@@ -102,7 +105,6 @@ public class ChatWindowController {
                 appendChatText(text, true);
             }
         });
-        System.out.println(selectEmote());
     }
     public void setPeer(Peer p) {
         this.myPeer = p;
@@ -123,51 +125,59 @@ public class ChatWindowController {
     }
 
     private int selectEmote() {
-        // Create the custom dialog.
+        // 이모티콘 선택 창 생성
         Dialog<Integer> dialog = new Dialog<>();
         dialog.setTitle("이모티콘 선택");
         dialog.setHeaderText("이모티콘을 선택해주세요.");
 
-        // Set the button types.
-        ButtonType loginButtonType = new ButtonType("전송", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+        // 버튼 종류 생성 (
+        ButtonType submitButtonType = new ButtonType("전송", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
+        Node submitButton = dialog.getDialogPane().lookupButton(submitButtonType);
+        submitButton.setDisable(true);
 
-        // Create the username and password labels and fields.
+        // 이모티콘 목록을 담을 GridPane 생성
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 10, 20, 10));
 
+        // 이모티콘 ListView 생성, CellFactory 설정
         ListView lv = new ListView();
         lv.setCellFactory(
-                (Callback<ListView<Integer>, ListCell<Integer>>) list -> new EmoteListItem()
+            (Callback<ListView<Integer>, ListCell<Integer>>) list -> new EmoteListItem()
         );
 
+        // 이모티콘 채우기
         ObservableList<Integer> items = FXCollections.observableArrayList();
         lv.setItems(items);
         for(int i=1;i<=Main.EMOTE_COUNT;i++) {
             items.add(i);
         }
+        // ListView를 GridView 생성
         grid.add(lv, 0, 0);
 
-        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-        loginButton.setDisable(true);
+        // Dialog에 Grid를 담음
         dialog.getDialogPane().setContent(grid);
 
+        // ListView 항목을 선택하면 submitButton을 활성화
         lv.getSelectionModel().selectedIndexProperty().addListener(e -> {
-           loginButton.setDisable(false);
+           submitButton.setDisable(false);
         });
+        // Dialog의 Result를 ListView의 selectedIndex+1이 되도록 설정
         dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == loginButtonType) {
+            if (dialogButton == submitButtonType) {
                 return lv.getSelectionModel().getSelectedIndex()+1;
             }
             return null;
         });
 
+        // Dialog를 띄우고, 사용자가 선택했으면 그 Index, 선택하지 않았으면 -1를 반환한다.
         Optional<Integer> result = dialog.showAndWait();
         return result.isPresent()?result.get():-1;
     }
 
+    // 이모티콘 선택 Dialog의 Custom ListCell
     class EmoteListItem extends ListCell<Integer>  {
         @Override
         public void updateItem(Integer item, boolean empty) {
@@ -266,3 +276,6 @@ public class ChatWindowController {
         }
     }
 }
+
+// 참고 출처
+// http://code.makery.ch/blog/javafx-dialogs-official/
