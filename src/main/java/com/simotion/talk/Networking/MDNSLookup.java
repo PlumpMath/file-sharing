@@ -13,9 +13,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Arrays;
 
-// public class MulticastReceiver
+// public class MDNSLookup
 // 네트워크 상의 피어를 탐색하고, 찾았을 때 피어 정보를 가져온다.
-public class MulticastReceiver implements Runnable {
+public class MDNSLookup implements Runnable {
     private JmDNS jmdns;
     private static final String TYPE_STRING = "_transfer._http._tcp.local.";
 

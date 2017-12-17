@@ -4,14 +4,14 @@ import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 import java.net.InetAddress;
 
-// public class MulticastEmitter
+// public class MDNSResponse
 // 네트워크 상의 mDNS 쿼리에 답변한다.
 
-public class MulticastEmitter implements Runnable {
+public class MDNSResponse implements Runnable {
     private JmDNS jmdns;
     private static final String TYPE_STRING = "_transfer._http._tcp.local.";
 
-    public MulticastEmitter() {
+    public MDNSResponse() {
     }
     public void run() {
         try {
