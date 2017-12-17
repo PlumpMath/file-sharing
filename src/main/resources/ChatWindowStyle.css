@@ -1,3 +1,9 @@
 #modesFlowPane {
-    -fx-background-color: #7998b8;
+    -fx-background-color: #b1c3c7;
+}
+#chatListView {
+    -fx-background-insets: 0;
+}
+#chatMessage {
+    -fx-background-insets: 0;
 }

@@ -16,6 +16,8 @@ public class Main extends Application {
     public static final String UUID_KEY          = "MachineUUID";
     public static final String ALLOW_FILES       = "ALLOW_FILES";
 
+    public static final int EMOTE_COUNT          = 30;
+
     // 모든것을 시작한다
     @Override
     public void start(Stage primaryStage) throws Exception {

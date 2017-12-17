@@ -6,10 +6,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -29,6 +33,7 @@ public class ChatWindowController {
     @FXML private ImageView btn_clear;
     @FXML private ImageView btn_filebox;
     @FXML private ImageView btn_location;
+    @FXML private ImageView btn_emote;
     private Peer myPeer;
     public void appendChatText(String text, boolean isOutgoing) {
         Platform.runLater(() -> {
@@ -68,6 +73,7 @@ public class ChatWindowController {
         btn_clear.setPickOnBounds(true);
         btn_filebox.setPickOnBounds(true);
         btn_location.setPickOnBounds(true);
+        btn_emote.setPickOnBounds(true);
         // 채팅창 지우기 버튼
         btn_clear.setOnMouseClicked(e -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -87,6 +93,16 @@ public class ChatWindowController {
         btn_filebox.setOnMouseClicked(e -> FileSend.chooseAndSend((Stage)chatListView.getScene().getWindow(), myPeer));
         // 위치 전송 버튼
         btn_location.setOnMouseClicked(e -> new SetLocationWindow().showWindow(myPeer));
+        btn_emote.setOnMouseClicked(e -> {
+            int selection = selectEmote();
+            if(selection != -1) {
+                String text = "\\\\emote "+selection;
+                MessagingClient.getInstance().sendMessage(myPeer, text);
+                chatMessage.clear();
+                appendChatText(text, true);
+            }
+        });
+        System.out.println(selectEmote());
     }
     public void setPeer(Peer p) {
         this.myPeer = p;
@@ -106,6 +122,69 @@ public class ChatWindowController {
         chatListView.scrollTo(chatItems.size() - 1);
     }
 
+    private int selectEmote() {
+        // Create the custom dialog.
+        Dialog<Integer> dialog = new Dialog<>();
+        dialog.setTitle("이모티콘 선택");
+        dialog.setHeaderText("이모티콘을 선택해주세요.");
+
+        // Set the button types.
+        ButtonType loginButtonType = new ButtonType("전송", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+        // Create the username and password labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 10, 20, 10));
+
+        ListView lv = new ListView();
+        lv.setCellFactory(
+                (Callback<ListView<Integer>, ListCell<Integer>>) list -> new EmoteListItem()
+        );
+
+        ObservableList<Integer> items = FXCollections.observableArrayList();
+        lv.setItems(items);
+        for(int i=1;i<=Main.EMOTE_COUNT;i++) {
+            items.add(i);
+        }
+        grid.add(lv, 0, 0);
+
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+        dialog.getDialogPane().setContent(grid);
+
+        lv.getSelectionModel().selectedIndexProperty().addListener(e -> {
+           loginButton.setDisable(false);
+        });
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == loginButtonType) {
+                return lv.getSelectionModel().getSelectedIndex()+1;
+            }
+            return null;
+        });
+
+        Optional<Integer> result = dialog.showAndWait();
+        return result.isPresent()?result.get():-1;
+    }
+
+    class EmoteListItem extends ListCell<Integer>  {
+        @Override
+        public void updateItem(Integer item, boolean empty) {
+            super.updateItem(item, empty);
+            if(item != null) {
+                TextFlow flow = new TextFlow();
+                ImageView img = new ImageView();
+                img.setImage(new Image(getClass().getResource("/emote/"+item+".png").toExternalForm()));
+                img.setFitHeight(90);
+                img.setFitWidth(90);
+                Text t1 = new Text("  이모티콘 "+item);
+                flow.getChildren().addAll(img, t1);
+                setGraphic(flow);
+            }
+        }
+    }
+
     // 채팅창 메세지 하나에 대한 Custom ListCell
     class ChatItemCell extends ListCell<ChatItem> {
         @Override
@@ -122,7 +201,7 @@ public class ChatWindowController {
                 // 위치 메시지인지 확인
                 if(checkMapData(item.message)) {
                     // 위치 메세지이면 ViewLocationWindow를 띄우는 버튼 생성
-                    Button locBtn=new Button();
+                    Button locBtn = new Button();
                     locBtn.setText("위치 보기");
                     // 버튼 MouseClicked 핸들러 연결
                     locBtn.setOnMouseClicked(e ->
@@ -136,6 +215,13 @@ public class ChatWindowController {
                     });
                     // TextFlow에 요소 추가
                     flow.getChildren().addAll(text1, locBtn);
+                } else if(checkEmote(item.message)) {
+                    String imageID = Integer.valueOf(item.message.split(" ")[1]).toString();
+                    ImageView img = new ImageView();
+                    img.setImage(new Image(getClass().getResource("/emote/"+imageID+".png").toExternalForm()));
+                    img.setFitHeight(90);
+                    img.setFitWidth(90);
+                    flow.getChildren().addAll(text1, img);
                 } else {
                     // 메세지 본문 Text 추가
                     Text text2=new Text(item.message);
@@ -164,6 +250,17 @@ public class ChatWindowController {
                 double py = Double.valueOf(msgs[3]);
                 return (map>=1 && map<=5 && px>=0 && px<=1 && py>=0 && py<=1);
             } catch(Exception e) {
+                return false;
+            }
+        }
+        private boolean checkEmote(String msg) {
+            try {
+                String[] msgs = msg.split(" ");
+                if(msgs.length != 2) return false;
+                if(!msgs[0].equals("\\\\emote")) return false;
+                int val = Integer.valueOf(msgs[1]);
+                return (val>=1 && val<= Main.EMOTE_COUNT);
+            } catch(Exception ignore) {
                 return false;
             }
         }

@@ -2,10 +2,14 @@ package com.simotion.talk.Networking;
 
 import com.simotion.talk.DataParser;
 import com.simotion.talk.Main;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Optional;
 import java.util.prefs.Preferences;
 
 
@@ -36,6 +40,16 @@ public class HandshakeServer implements Runnable {
                     e.printStackTrace();
                 }
             }
+        } catch(java.net.BindException e) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("오류");
+                alert.setHeaderText("네트워크 오류");
+                alert.setContentText("연결 서버를 만들 수 없습니다. 같은 프로그램이 이미 실행중인지 확인해 주세요.");
+                alert.showAndWait();
+                Platform.exit();
+                System.exit(0);
+            });
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
