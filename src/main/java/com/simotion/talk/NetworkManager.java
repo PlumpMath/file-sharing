@@ -1,8 +1,9 @@
 package com.simotion.talk;
 
-public class NetworkManager {
+import com.simotion.talk.Networking.*;
 
-    public static void enableMulticast() {
+public class NetworkManager {
+    public static void enableServers() {
         MulticastEmitter me = new MulticastEmitter();
         Thread t = new Thread(me);
         t.start();
@@ -13,5 +14,4 @@ public class NetworkManager {
         Thread t4 = new Thread(new MessagingServer());
         t4.start();
     }
-
 }

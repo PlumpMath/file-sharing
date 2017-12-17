@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.simotion.talk.UI.SetLocationWindowController"
+      stylesheets="@MainWindowStyle.css"
+      prefHeight="560.0" prefWidth="700.0"
+      minHeight="560.0" minWidth="700.0"
+      maxHeight="560.0" maxWidth="700.0">
+    <padding>
+        <Insets left="10" right="10" bottom="10" top="10" />
+    </padding>
+    <HBox>
+        <ChoiceBox fx:id="locationChoice">
+        </ChoiceBox>
+    </HBox>
+    <AnchorPane prefHeight="464">
+        <VBox.margin>
+            <Insets top="5" />
+        </VBox.margin>
+        <ImageView fx:id="mapImageView" fitHeight="464" fitWidth="665">
+
+        </ImageView>
+        <Circle fx:id="pinCircle" id="pinCircle" radius="10">
+
+        </Circle>
+    </AnchorPane>
+    <HBox>
+        <VBox.margin>
+            <Insets top="5" bottom="5" />
+        </VBox.margin>
+        <Button fx:id="submitBtn" text="전송">
+            <HBox.margin>
+                <Insets right="5" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="cancelBtn" text="취소" />
+    </HBox>
+</VBox>

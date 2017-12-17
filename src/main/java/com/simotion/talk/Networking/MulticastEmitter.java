@@ -1,4 +1,6 @@
-package com.simotion.talk;
+package com.simotion.talk.Networking;
+
+import com.simotion.talk.Main;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -18,10 +20,10 @@ import javax.jmdns.ServiceListener;
 
 
 public class MulticastEmitter implements Runnable {
-    public JmDNS jmdns;
-    public static final String TYPE_STRING = "_transfer._http._tcp.local.";
+    private JmDNS jmdns;
+    private static final String TYPE_STRING = "_transfer._http._tcp.local.";
 
-    String profileName, profileEmail, machineUUID;
+    private String profileName, profileEmail, machineUUID;
 
     public MulticastEmitter() {
         Preferences prefs = Preferences.userNodeForPackage(com.simotion.talk.Main.class);
@@ -31,9 +33,9 @@ public class MulticastEmitter implements Runnable {
     }
     public void run() {
         try {
-            InetAddress addr = InetAddress.getLocalHost();
-            String hostname = InetAddress.getByName(addr.getHostName()).toString();
-            jmdns = JmDNS.create(addr, hostname);
+            InetAddress address = InetAddress.getLocalHost();
+            String hostname = InetAddress.getByName(address.getHostName()).toString();
+            jmdns = JmDNS.create(address, hostname);
 
             ServiceInfo serviceInfo = ServiceInfo.create(TYPE_STRING, "example", 1234, "");
             while(true) {
@@ -43,7 +45,7 @@ public class MulticastEmitter implements Runnable {
             }
         }
         catch(Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

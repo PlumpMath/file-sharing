@@ -9,23 +9,33 @@
 <FlowPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.simotion.talk.UI.ChatWindowController"
-          minHeight="500" maxHeight="500" minWidth="400" maxWidth="400"
+          minHeight="475" maxHeight="475" minWidth="400" maxWidth="400"
           stylesheets="ChatWindowStyle.css">
     <ListView fx:id="chatListView" id="chatListView" minWidth="400" maxWidth="400" prefHeight="365">
 
     </ListView>
-    <FlowPane orientation="HORIZONTAL" maxHeight="35" prefHeight="35"
-        id="modesFlowPane" fx:id="modesFlowPane" alignment="CENTER_LEFT">
+    <FlowPane maxHeight="35" prefHeight="35"
+              id="modesFlowPane" fx:id="modesFlowPane" alignment="CENTER_LEFT">
         <padding>
             <Insets top="3" left="3" bottom="3" right="3" />
         </padding>
-        <ImageView fx:id="btn_clear" fitHeight="18" fitWidth="18" >
+        <ImageView fx:id="btn_clear" fitHeight="18" fitWidth="18">
             <FlowPane.margin>
-                <Insets left="5" />
+                <Insets left="5"/>
             </FlowPane.margin>
-            <image>
-                <Image url="@/img/ico_trash.png" />
-            </image>
+            <Image url="@/img/ico_trash.png"/>
+        </ImageView>
+        <ImageView fx:id="btn_filebox" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_filebox.png"/>
+        </ImageView>
+        <ImageView fx:id="btn_location" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_map.png"/>
         </ImageView>
     </FlowPane>
     <TextArea fx:id="chatMessage" id="chatMessage" minWidth="400" maxWidth="400" prefHeight="100" wrapText="true">

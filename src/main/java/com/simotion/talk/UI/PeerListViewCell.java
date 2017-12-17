@@ -11,7 +11,7 @@ public class PeerListViewCell extends ListCell<Peer>
         super.updateItem(item,empty);
         if(item != null)
         {
-            PeerListCellItem data = new PeerListCellItem();
+            PeerListCellItemController data = new PeerListCellItemController();
             data.setInfo(item);
             setGraphic(data.getBox());
         }

@@ -23,10 +23,21 @@ public class PeerListManager {
         }
     }
 
-    public static void receiveChatMsg(Peer peer, String message) {
+    public static void addMsg(Peer peer, String message, boolean isOutgoing) {
         Platform.runLater(() -> {
-            getChatWindowController(peer).appendChatText(message, false);
+            if(chatControllerDictionary.containsKey(peer)) {
+                chatControllerDictionary.get(peer).appendChatText(message, isOutgoing);
+            } else {
+                ChatWindow cw = new ChatWindow();
+                ChatWindowController controller = cw.showWindow(peer);
+                chatControllerDictionary.put(peer, controller);
+                controller.appendChatText(message, isOutgoing);
+            }
         });
+    }
+
+    public static void receiveChatMsg(Peer peer, String message) {
+        Platform.runLater(() -> getChatWindowController(peer).appendChatText(message, false));
     }
 
     public static void removeWindowController(Peer peer) {
@@ -35,16 +46,13 @@ public class PeerListManager {
         }
     }
 
-    public static boolean addPeer(Peer peer) {
-        Iterator it = peers.iterator();
-        while(it.hasNext()) {
-            Peer now = (Peer)it.next();
-            if(now.equals(peer)) {
-                now.lastSeen = System.nanoTime();
-                return false;
+    public static void addPeer(Peer peer) {
+        for (Object now : peers) {
+            if (now.equals(peer)) {
+                ((Peer)now).lastSeen = System.nanoTime();
+                return;
             }
         }
         peers.add(peer);
-        return true;
     }
 }

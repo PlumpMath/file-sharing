@@ -3,20 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
-<FlowPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.simotion.talk.UI.PeerInformationWindowController"
-          stylesheets="PeerInformationStyle.css"
-          orientation="VERTICAL"
-          prefHeight="160.0" prefWidth="450.0">
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.simotion.talk.UI.PeerInformationWindowController"
+      stylesheets="PeerInformationStyle.css">
     <padding>
         <Insets top="10" left="10" bottom="10" right="10" />
     </padding>
-    <Label text="피어 정보" id="heading" fx:id="heading" >
+    <Label text="피어 정보">
         <FlowPane.margin>
             <Insets bottom="10" />
         </FlowPane.margin>
     </Label>
     <Label text="{연결 정보}" id="bodyText" fx:id="bodyText" >
     </Label>
-</FlowPane>
+</VBox>

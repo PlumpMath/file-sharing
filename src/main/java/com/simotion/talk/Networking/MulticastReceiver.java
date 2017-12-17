@@ -1,9 +1,13 @@
-package com.simotion.talk;
+package com.simotion.talk.Networking;
+
+import com.simotion.talk.DataParser;
+import com.simotion.talk.Networking.HandshakeServer;
+import com.simotion.talk.Peer;
+import com.simotion.talk.PeerListManager;
 
 import java.io.*;
 import java.net.*;
 import java.util.Arrays;
-import java.util.prefs.Preferences;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;

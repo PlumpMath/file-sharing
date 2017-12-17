@@ -8,12 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PeerInformationWindow extends Stage {
+class PeerInformationWindow extends Stage {
     private Stage primaryStage;
-    public PeerInformationWindow() {
+    PeerInformationWindow() {
         primaryStage = new Stage();
     }
-    public void showWindow(Peer peer) {
+    void showWindow(Peer peer) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/PeerInformationWindow.fxml"));
             Parent root = fxmlLoader.load();
@@ -23,8 +23,8 @@ public class PeerInformationWindow extends Stage {
 
             primaryStage.setTitle(Main.APP_NAME);
             primaryStage.setScene(scene);
-            primaryStage.setMinHeight(160);
-            primaryStage.setMaxHeight(160);
+            primaryStage.setMinHeight(180);
+            primaryStage.setMaxHeight(180);
             primaryStage.setMinWidth(450);
             primaryStage.setMaxWidth(450);
 

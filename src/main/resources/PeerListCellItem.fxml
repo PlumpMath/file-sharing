@@ -7,33 +7,31 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.geometry.Insets?>
 <HBox xmlns:fx="http://javafx.com/fxml" fx:id="hBox">
-    <children>
-        <FlowPane fx:id="fPane" minHeight="32" prefHeight="32" maxHeight="32" alignment="CENTER_LEFT">
-            <Label fx:id="label1"/>
-            <ImageView fx:id="btn_info" fitHeight="24" fitWidth="24" >
-                <FlowPane.margin>
-                    <Insets left="5" />
-                </FlowPane.margin>
-                <image>
-                    <Image url="@/img/ico_info.png" />
-                </image>
-            </ImageView>
-            <ImageView fx:id="btn_chat" fitHeight="24" fitWidth="24" >
-                <FlowPane.margin>
-                    <Insets left="5" />
-                </FlowPane.margin>
-                <image>
-                    <Image url="@/img/ico_chat.png" />
-                </image>
-            </ImageView>
-            <ImageView fx:id="btn_filebox" fitHeight="24" fitWidth="24" >
-                <FlowPane.margin>
-                    <Insets left="5" />
-                </FlowPane.margin>
-                <image>
-                    <Image url="@/img/ico_filebox.png" />
-                </image>
-            </ImageView>
-        </FlowPane>
-    </children>
+    <FlowPane fx:id="fPane" minHeight="32" prefHeight="32" maxHeight="32" alignment="CENTER_LEFT">
+        <Label fx:id="label1"/>
+        <ImageView fx:id="btn_info" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_info.png"/>
+        </ImageView>
+        <ImageView fx:id="btn_chat" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_chat.png"/>
+        </ImageView>
+        <ImageView fx:id="btn_filebox" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_filebox.png"/>
+        </ImageView>
+        <ImageView fx:id="btn_location" fitHeight="24" fitWidth="24">
+            <FlowPane.margin>
+                <Insets left="5"/>
+            </FlowPane.margin>
+            <Image url="@/img/ico_map.png"/>
+        </ImageView>
+    </FlowPane>
 </HBox>

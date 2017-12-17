@@ -15,6 +15,9 @@
 #profileImg {
     -fx-border-radius: 100 100 100 100;
 }
+#toolBar {
+    -fx-background-color: #e2d4b3;
+}
 #infoBar {
     -fx-background-color: #7998b8;
 }
@@ -35,4 +38,12 @@
 }
 ImageView {
     -fx-background-color: #FFF;
+}
+#peerListView {
+    -fx-background-insets: 0;
+}
+#pinCircle {
+    -fx-stroke: #FF0000;
+    -fx-stroke-width: 4px;
+    -fx-fill: transparent;
 }

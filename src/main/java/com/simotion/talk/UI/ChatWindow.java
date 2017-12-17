@@ -1,6 +1,7 @@
 package com.simotion.talk.UI;
 
 import com.simotion.talk.Peer;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ public class ChatWindow {
     }
     public ChatWindowController showWindow(Peer peer) {
         try {
+            Platform.setImplicitExit(true);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChatWindow.fxml"));
             Parent root = fxmlLoader.load();
 
