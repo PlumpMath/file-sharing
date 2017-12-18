@@ -1,5 +1,13 @@
 # SASA Messenger
 
+#### 주요 기능
+- mDNS를 이용한 로컬 피어 탐색 (P2P 메세징 가능)
+- 메세지 주고받기
+- 교내 지도를 이용한 위치 호출
+- 파일 전송 및 수신 허용/비허용 선택
+- 다양한 이모티콘
+- 달빛학사 링크 등 부가기능
+
 #### 실행 방법
 - 종속 패키지를 설치하기 위해, View > Tool Windows > Gradle로 이동하여 buildDependents Task를 실행합니다. (클릭)
 - com.simotion.talk.Main을 실행합니다.
