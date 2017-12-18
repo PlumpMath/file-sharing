@@ -1,10 +1,12 @@
 package com.simotion.talk.Networking;
 
 
+import com.simotion.talk.DataParser;
+import com.simotion.talk.Peer;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
-import com.simotion.talk.*;
 
 // class MessagingClient
 // 피어를 찾은 후, 피어에게 보내는 모든 메세지를 처리한다.
