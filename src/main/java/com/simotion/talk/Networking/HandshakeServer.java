@@ -4,12 +4,10 @@ import com.simotion.talk.DataParser;
 import com.simotion.talk.Main;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Optional;
 import java.util.prefs.Preferences;
 
 

@@ -8,6 +8,20 @@ import javafx.stage.Stage;
 import java.util.UUID;
 import java.util.prefs.Preferences;
 
+/*
+
+도움을 받은 사람))
+조하연 - 프로그램 로고 제작
+
+도와을 준 사람))
+박상훈 - 타워 디펜스 게임에서 적의 자료구조 관련 조언
+오은수 - JavaFX Thread 관련 오류 해결 (Platform.runLater)
+김태현 - Swing에서 Thread를 이용한 화면 전환 (Setter를 활용한 스레드 전환)
+조하연 - 게임의 배경화면 (게임 판 등) 그리기, 플레이어 말 자료구조 및 그리기
+권순현 - 게임 플레이 시 반응 속도가 계속 느려지는 문제 해결 (지속적인 ImageView 추가로 인한 메모리 누수)
+이현민 - 네트워킹 관련 도움 (소켓 프로그래밍 등)
+
+*/
 
 public class Main extends Application {
     public static final String FIRST_START_TITLE = "FIRST_START";
